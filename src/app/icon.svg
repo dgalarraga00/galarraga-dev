@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!--
+    Favicon: the same cup that closes the headline, so the tab and the page
+    speak the same language.
+
+    Redrawn on a 32px grid rather than scaled down from the 24px icon: at
+    favicon size a hairline stroke disappears, so the weight goes up to 2.2 and
+    the saucer is dropped. Only the silhouette survives at 16px, and the
+    silhouette is what has to read.
+  -->
+  <rect width="32" height="32" rx="7" fill="#241C17"/>
+  <g fill="none" stroke="#E0A458" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Steam -->
+    <path d="M12 9.5c0-2 2-2.2 2-4.4"/>
+    <path d="M18 9.5c0-2 2-2.2 2-4.4"/>
+    <!-- Cup -->
+    <path d="M7 13.5h13V19a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5Z"/>
+    <!-- Handle -->
+    <path d="M20 15h1.6a2.7 2.7 0 0 1 0 5.4H20"/>
+  </g>
+</svg>
