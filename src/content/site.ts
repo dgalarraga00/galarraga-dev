@@ -235,10 +235,6 @@ export const projects: Project[] = [
       { name: "React", slug: "react" },
     ],
     liveUrl: "https://home.twonutris.net",
-    // El repositorio es PRIVADO: github.com/dgalarraga00/TwoNutris-Web
-    // devuelve 404, así que el botón mandaría al visitante a una página de
-    // error. Hacelo público y descomentá esta línea; mientras tanto el botón
-    // no se renderiza.
     repoUrl: "https://github.com/dgalarraga00/TwoNutris-Web",
     year: "2025",
   },
@@ -260,7 +256,6 @@ export const projects: Project[] = [
       { name: "Tailwind", slug: "tailwindcss" },
     ],
     liveUrl: "https://kuna-seven.vercel.app/",
-    // Mismo caso: github.com/dgalarraga00/Kuna es privado y devuelve 404.
     repoUrl: "https://github.com/dgalarraga00/Kuna",
     year: "2026",
   },
