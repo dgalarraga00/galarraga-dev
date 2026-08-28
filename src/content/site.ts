@@ -145,7 +145,7 @@ export const menu: MenuItem[] = [
   {
     productId: "cortado-express",
     name: "Auditoría exprés y tres arreglos",
-    coffee: "Cortado Express · 149 €",
+    coffee: "Cortado Express · $149",
     description:
       "Reviso tu web actual y arreglo los tres problemas de mayor impacto en 72 horas, con informe de antes y después. Precio cerrado. La forma más barata de probar cómo trabajo.",
   },

@@ -10,7 +10,7 @@
  * undercharging the hard one.
  */
 
-export const currency = "€";
+export const currency = "$";
 
 /** Widens the result into a range: ±15%. */
 export const spread = 0.15;
@@ -233,5 +233,5 @@ export function estimate(
 }
 
 export function formatAmount(value: number): string {
-  return `${value.toLocaleString("es-ES")}${currency}`;
+  return `${currency}${value.toLocaleString("es-ES")}`;
 }
