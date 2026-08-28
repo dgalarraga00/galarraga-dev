@@ -57,7 +57,7 @@ export const scopes: Scope[] = [
     includes: [
       "De 5 a 8 páginas: inicio, servicios, sobre nosotros, contacto y las que hagan falta",
       "Todo lo de la landing, aplicado a cada página",
-      "Formularios, integración con WhatsApp y calendario de reservas si lo necesitás",
+      "Formularios, integración con WhatsApp y calendario de reservas si lo necesitas",
       "Páginas legales adaptadas a tu país y a los datos que recojas",
       "Alta en Google Search Console con el sitemap enviado",
     ],
@@ -188,3 +188,4 @@ export const contentScope: Record<string, { includes: string[]; excludes: string
     ],
   },
 };
+
