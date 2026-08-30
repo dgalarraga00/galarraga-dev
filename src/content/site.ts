@@ -288,7 +288,7 @@ export const process: ProcessStep[] = [
     title: "Propuesta",
     body:
       "Te llega un presupuesto detallado por escrito: alcance funcional, " +
-      "calendario por fases, entregables concretos y precio cerrado. Sin letra chica, sin costes adicionales ni sorpresas de ultimo minuto..",
+      "calendario por fases, entregables concretos y precio cerrado. Sin letra chica, sin costes adicionales ni sorpresas de último minuto.",
   },
   {
     id: "desarrollo",
@@ -296,14 +296,14 @@ export const process: ProcessStep[] = [
     title: "Desarrollo",
     body:
       "Construyo por fases con revisiones cada pocos días. Ves cómo " +
-      "avanza, no esperas un mes para descubrir si vamos bien. En cada paso importante tienes la decision. ",
+      "avanza, no esperas un mes para descubrir si vamos bien. En cada paso importante tienes la decisión.",
   },
   {
     id: "entrega",
     icon: "rocket",
     title: "Entrega",
     body:
-      "Te entrego  el proyecto funcionando y desplegado, con código, accesos " +
+      "Te entrego el proyecto funcionando y desplegado, con código, accesos " +
       "y documentación. Si quieres seguir conmigo, perfecto. Si prefieres llevarlo " +
       "a otro equipo, también: el código es tuyo.",
   },
