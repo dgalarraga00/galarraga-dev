@@ -26,6 +26,12 @@ export type Choice = {
   /** Added before multipliers, in currency units. */
   base?: number;
   /**
+   * Added AFTER multipliers, in currency units. For real costs that don't
+   * scale with project size or urgency — a domain doesn't cost more because
+   * the client is in a hurry.
+   */
+  flat?: number;
+  /**
    * Closed price. When present the estimate returns exactly this number, the
    * multipliers are ignored, and the wizard skips straight to the contact step
    * — asking "how do you want it?" about a fixed-scope audit makes no sense.
@@ -120,7 +126,11 @@ export const steps: Step[] = [
         // print: "dominio incluido" with no limit is read as "for life", and
         // that is an argument you lose in writing.
         hint: "y el dominio, pagado el primer año",
-        factor: 1.22,
+        // Same deploy effort as "dev-deploy" — the only thing this tier adds
+        // is the domain itself, so it's a flat surcharge, not another
+        // multiplier on top of the whole project.
+        factor: 1.12,
+        flat: 20,
       },
     ],
   },
@@ -216,6 +226,7 @@ export function estimate(
 
   let base = 0;
   let multiplier = 1;
+  let flat = 0;
 
   for (const step of steps) {
     const choiceId = answers[step.id];
@@ -226,9 +237,10 @@ export function estimate(
 
     base += choice.base ?? 0;
     multiplier *= choice.factor;
+    flat += choice.flat ?? 0;
   }
 
-  const total = base * multiplier;
+  const total = base * multiplier + flat;
   return { low: round(total * (1 - spread)), high: round(total * (1 + spread)) };
 }
 
