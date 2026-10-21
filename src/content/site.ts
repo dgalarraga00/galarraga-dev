@@ -12,15 +12,14 @@ export const profile = {
   role: "Desarrollador web",
 
   /**
-   * Portrait, shown in "Quién está detrás" — not in the hero, where it would
-   * compete with the headline for the first three seconds of attention.
+   * Portrait, shown as a sticker beside the headline in the hero.
    *
    * The frame is 4:5. The source here is 1170×2080 (a taller 9:16), so
    * `position` decides which part survives the crop: it maps straight to CSS
    * object-position. Use "center" (default), "top" if the head is being cut,
    * or a pair like "50% 30%" to fine-tune.
    *
-   * Set to `null` to hide it — the section then renders as a single column
+   * Set to `null` to hide it — the hero then renders without the sticker
    * rather than showing a broken image.
    */
   photo: {
@@ -65,7 +64,20 @@ export const profile = {
     "Cada proyecto empieza desde cero: arquitectura, código y puesta en " +
     "producción. Cero plantillas, cero generadores, sin atajos que se pagan después.",
 
-  /** Right column of the hero: the terminal voice, with a rotating value. */
+  /** Washi-tape label above the headline. */
+  heroTape: "Desarrollo web a medida · freelance",
+
+  /** Handwritten sticker stuck to the portrait, and the round badge on it. */
+  heroSticker: "hola, soy David ☕︎",
+  heroBadge: ["recién", "tostado"],
+
+  /** Third block of the hero band. */
+  heroCodeCard: {
+    title: "El código es tuyo",
+    body: "Te entrego proyecto, accesos y documentación. Sin ataduras.",
+  },
+
+  /** Amber block of the hero band: the terminal voice, with a rotating value. */
   brewLabel: "preparando",
   brewWords: [
     "aplicaciones web",

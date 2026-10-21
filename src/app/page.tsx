@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/Button";
-import { CoffeeCup } from "@/components/icons/CoffeeCup";
 import { MenuRow } from "@/components/MenuRow";
 import { Reveal } from "@/components/Reveal";
-import { ScrambleText } from "@/components/ScrambleText";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SocialLinks } from "@/components/SocialLinks";
 import { TechMarquee } from "@/components/TechMarquee";
+import { Hero } from "@/components/sections/Hero";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { ProcessAccordion } from "@/components/sections/ProcessAccordion";
 import { ProjectList } from "@/components/sections/ProjectList";
@@ -19,72 +18,7 @@ const section = "py-24 sm:py-32";
 export default function Home() {
   return (
     <>
-      {/* ---------------------------------------------------------------- */}
-      {/* Hero                                                             */}
-      {/* ---------------------------------------------------------------- */}
-      {/* Editorial hero, not the SaaS template.
-          The template is: pill badge, left headline, subheadline, two buttons —
-          stacked in one column. This instead lets the type run to the full
-          width, cuts it with a rule, and hangs the supporting information off a
-          two-column row underneath, the way a printed board is set. The scale
-          jump between the headline and the mono labels is what does the work. */}
-      <section className={`${container} pt-20 pb-20 sm:pt-28 sm:pb-24`}>
-        <Reveal>
-          {/* One heading, three lines, a hard scale jump between the statement
-              and the deck. Keeping the deck inside the h1 gives the heading
-              real descriptive content — "Nada instantáneo" alone says nothing
-              to a search engine — without adding a competing h1. */}
-          <h1 className="font-display text-[3.5rem] leading-[0.92] font-semibold tracking-[-0.03em] sm:text-[7rem] lg:text-[9.5rem]">
-            <span className="block">{profile.headline}</span>
-            {/* Flat colour, never a gradient: this is the LCP element and the
-                single most important word on the page. */}
-            <span className="text-ambar block">{profile.headlineAccent}</span>
-            <span className="text-leche mt-7 block text-xl leading-snug font-normal tracking-normal sm:mt-9 sm:text-3xl">
-              {profile.headlineDeck}
-              {/* The house mark closes the sentence. Decorative, so it is
-                  hidden from assistive tech — the heading still reads as
-                  clean text. The nbsp keeps it from ever wrapping alone
-                  onto a line of its own. */}
-              <span className="whitespace-nowrap">
-                {" "}
-                <CoffeeCup className="text-ambar inline-block size-[0.95em] translate-y-[0.08em]" />
-              </span>
-            </span>
-          </h1>
-        </Reveal>
-
-        <Reveal delay={80}>
-          <hr className="border-poso mt-12 border-t sm:mt-16" />
-        </Reveal>
-
-        <div className="mt-10 grid gap-10 md:grid-cols-[1fr_auto] md:items-start md:gap-16">
-          <Reveal delay={120}>
-            <p className="text-leche max-w-xl text-base leading-relaxed sm:text-lg">
-              {profile.lede}
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <ButtonLink href="/comanda">Arma tu pedido</ButtonLink>
-              <ButtonLink href="#barra" variant="outline">
-                Ver el trabajo
-              </ButtonLink>
-            </div>
-          </Reveal>
-
-          {/* The rotating value lives here, well away from the h1. */}
-          <Reveal delay={180}>
-            <p className="text-vapor font-mono text-xs tracking-[0.15em] uppercase md:text-right">
-              <span aria-hidden="true" className="text-ambar">
-                &gt;{" "}
-              </span>
-              {profile.brewLabel}
-            </p>
-            <p className="text-crema mt-2 font-mono text-sm sm:text-base md:text-right">
-              <ScrambleText words={[...profile.brewWords]} />
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <Hero />
 
       {/* Moving strip of the stack — the first hit of colour on the page. */}
       <TechMarquee />

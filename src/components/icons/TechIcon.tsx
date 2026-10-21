@@ -4,7 +4,7 @@ type SimpleIcon = { title: string; hex: string; path: string };
 
 /**
  * Relative luminance, WCAG formula. Used to decide whether a brand colour is
- * legible on the espresso background.
+ * legible on the surface it sits on.
  */
 function luminance(hex: string): number {
   const channels = [0, 2, 4].map((i) => {
@@ -16,9 +16,10 @@ function luminance(hex: string): number {
 
 /**
  * Some brands (GitHub, Vercel, shadcn, Render) are officially black. Painting
- * them with their own hex on a near-black page makes them disappear, so those
- * fall back to the page's ink colour. Everything else keeps its real brand
- * colour — that is the point of the section.
+ * them with their own hex on a near-black surface makes them disappear, so
+ * those fall back to `currentColor`: the caller's text colour decides (ink on
+ * the light ground, crema inside a dark block). Everything else keeps its real
+ * brand colour — that is the point of the section.
  */
 const MIN_LUMINANCE = 0.06;
 
@@ -38,7 +39,7 @@ export function TechIcon({ slug, className, color }: TechIconProps) {
 
   const fill =
     color ??
-    (luminance(icon.hex) < MIN_LUMINANCE ? "var(--color-crema)" : `#${icon.hex}`);
+    (luminance(icon.hex) < MIN_LUMINANCE ? "currentColor" : `#${icon.hex}`);
 
   return (
     <svg
