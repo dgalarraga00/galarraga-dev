@@ -135,82 +135,98 @@ export const socials: { key: SocialKey; label: string; href: string }[] = [
 /* 02 · LA CARTA — services, named like a coffee menu                         */
 /* -------------------------------------------------------------------------- */
 
-export type MenuItem = {
-  name: string;
-  coffee: string;
+export type MenuGroup = {
+  id: string;
+  /** Mono line above the title: the coffees this group maps to. */
+  coffees: string;
+  title: string;
   description: string;
-  /**
-   * Links the row to pricing.ts and scope.ts. When present the row can be
-   * expanded to show what the product includes and excludes.
-   *
-   * Omit it for services quoted case by case — those have no fixed scope, and
-   * inventing one would be a promise nobody checked.
-   */
-  productId?: string;
+  /** Dark cards use the espresso palette; the rest sit on the light card. */
+  tone: "light" | "dark";
+  /** Wide cards hold a browser screenshot; narrow ones a small illustration. */
+  size: "wide" | "narrow";
+  /** Screenshot under the text, shown in a browser frame (wide cards). */
+  preview?: { src: string; alt: string; url: string };
+  /** Mini cart illustration (store card). Placeholder labels, not real products. */
+  cart?: { items: { name: string; qty: string }[]; pay: string };
+  /** Short chain of chips (integrations card). */
+  flow?: string[];
 };
 
 /**
- * Ordered by intensity, which happens to be the same order as price: the
- * strength of the coffee is doing real work here, not decoration.
+ * The eight services of the menu, regrouped into four cards. Order here is the
+ * order on the page: wide, narrow, wide, narrow.
+ *
+ * Prices are intentionally absent: the only fixed price on the home is the
+ * express audit below. Everything else is quoted in /comanda.
  */
-export const menu: MenuItem[] = [
+export const menuGroups: MenuGroup[] = [
   {
-    productId: "cortado-express",
-    name: "Auditoría exprés y tres arreglos",
-    coffee: "Cortado Express · $149",
+    id: "webs",
+    coffees: "Cortado · Americano",
+    title: "Webs",
     description:
-      "Reviso tu web actual y arreglo los tres problemas de mayor impacto en 72 horas, con informe de antes y después. Precio cerrado. La forma más barata de probar cómo trabajo.",
+      "Landing pages que convierten y webs corporativas de cinco a ocho páginas.",
+    tone: "light",
+    size: "wide",
+    preview: {
+      src: "/projects/twonutris-desktop.png",
+      alt: "Ejemplo de web: TwoNutris",
+      url: "home.twonutris.net",
+    },
   },
   {
-    productId: "landing",
-    name: "Landing pages",
-    coffee: "Cortado",
-    description:
-      "Una página, directa, pensada para convertir. Poca cantidad, mucho cuerpo y sabor.",
+    id: "tiendas",
+    coffees: "Latte",
+    title: "Tiendas",
+    description: "Catálogo, carrito y pagos a medida. Sin comisiones por venta.",
+    tone: "light",
+    size: "narrow",
+    cart: {
+      items: [
+        { name: "Producto 1", qty: "x2" },
+        { name: "Producto 2", qty: "x1" },
+      ],
+      pay: "Pagar",
+    },
   },
   {
-    productId: "corporativa",
-    name: "Webs corporativas",
-    coffee: "Americano",
+    id: "sistemas",
+    coffees: "Flat white · Doble espresso",
+    title: "Sistemas y apps",
     description:
-      "De cinco a ocho páginas para presentar tu negocio completo. Mismo fondo, servido largo.",
+      "Paneles, CRMs y aplicaciones web completas, de la arquitectura al deploy.",
+    tone: "dark",
+    size: "wide",
+    preview: {
+      src: "/projects/kuna-desktop.png",
+      alt: "Ejemplo de sistema: KUNA",
+      url: "kuna-seven.vercel.app",
+    },
   },
   {
-    productId: "tienda",
-    name: "Tiendas online",
-    coffee: "Latte",
+    id: "integraciones",
+    coffees: "Capuchino · Refill ∞",
+    title: "Integraciones y soporte",
     description:
-      "Catálogo, carrito y pagos, construido a medida. Sin las comisiones por venta ni los límites de las plataformas cerradas.",
-  },
-  {
-    productId: "panel",
-    name: "Paneles y sistemas de gestión",
-    coffee: "Flat white",
-    description:
-      "Dashboards, CRMs y back-offices. Denso, sin espuma, para el uso diario.",
-  },
-  {
-    productId: "app",
-    name: "Aplicaciones web a medida",
-    coffee: "Doble espresso",
-    description:
-      "El producto completo, desde la arquitectura hasta el deploy. Concentrado y sin relleno.",
-  },
-  {
-    // No productId: these two are quoted case by case, so they have no fixed
-    // scope to disclose.
-    name: "Integraciones y automatizaciones",
-    coffee: "Capuchino",
-    description:
-      "Una mezcla espumosa: conectar las herramientas que hoy no se hablan entre sí.",
-  },
-  {
-    name: "Mantenimiento y evolución",
-    coffee: "Refill ∞",
-    description:
-      "El proyecto sigue vivo después del lanzamiento. Yo también, como todo buen café.",
+      "Conecto las herramientas que hoy no se hablan, y el proyecto sigue vivo después del lanzamiento.",
+    tone: "light",
+    size: "narrow",
+    flow: ["WhatsApp", "Tu sistema", "Email"],
   },
 ];
+
+/** The entry offer. Its price is the only one shown on the home page. */
+export const auditOffer = {
+  kicker: "Cortado Express · precio cerrado",
+  title: "Auditoría exprés y tres arreglos",
+  description:
+    "Reviso tu web actual y arreglo los tres problemas de mayor impacto en 72 horas, con informe de antes y después. La forma más barata de probar cómo trabajo.",
+  price: "$149",
+  cta: "Pedir auditoría",
+  /** Label of the "Cotizar" buttons. */
+  quoteCta: "Cotizar",
+};
 
 /* -------------------------------------------------------------------------- */
 /* 03 · LA BARRA — projects                                                   */

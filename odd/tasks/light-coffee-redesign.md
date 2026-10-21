@@ -34,7 +34,7 @@ Strategy: ask-on-risk (default). Work-unit commits on `feat/light-coffee-redesig
 - [x] T1 — Light theme tokens, Caveat font, floating pill header, footer restyle. Route: delegated (writer). 
 - [x] T2 — Hero: headline + amber underline, sticker portrait, espresso band (lede + CTAs, amber "preparando" card with ScrambleText, "El código es tuyo" card); TechMarquee restyled. Route: delegated.
 - [x] T3 — La barra: project screenshots in `site.ts`, alternating light/dark cards with browser + phone frames, "El próximo puede ser el tuyo" slot, ProjectViewer dialog (desktop/mobile toggle, project switch). Route: delegated.
-- [ ] T4 — La carta: bento of 4 grouped service cards + amber Auditoría exprés strip; "Cotizar" links to /comanda. Route: delegated.
+- [x] T4 — La carta: bento of 4 grouped service cards + amber Auditoría exprés strip; "Cotizar" links to /comanda. Route: delegated.
 - [ ] T5 — La preparación: scroll-driven sticky cup (beans → ticket → pour + reviews → served + steam + stamp), steps list, reduced-motion static fallback, mobile layout. Route: delegated.
 - [ ] T6 — FAQs Samu-style (huge title, big questions with ↗, accordion), Origen/Molido restyle, closing "Hablemos." CTA band, /comanda readability. Route: delegated.
 
@@ -55,7 +55,8 @@ Design decisions:
 - Between T1 and T6 the home sections not yet restyled still use dark-block tokens on the light ground; each is replaced by its own task.
 - T1: lint OK, build OK (only the pre-existing metadataBase warning). Commit: 4d0ec08
 - T2: Hero (new sections/Hero.tsx, sticker portrait via next/image preload, amber underline, espresso band with ScrambleText card and code card), TechMarquee restyled, TechIcon falls back to currentColor for near-black brands. lint OK, build OK. Commit: 829f5de
-- T3: La barra: Project data gains images/kind/summary/shortName, alternating cards with browser+phone frames, next-project slot, native <dialog> ProjectViewer; SectionHeader restyled (title+tape+lead); home reordered to final order; sections data reshaped. public/projects/webnose-* are untracked and unused (not committed). lint OK, build OK. Commit: HASH
+- T3: La barra: Project data gains images/kind/summary/shortName, alternating cards with browser+phone frames, next-project slot, native <dialog> ProjectViewer; SectionHeader restyled (title+tape+lead); home reordered to final order; sections data reshaped. public/projects/webnose-* are untracked and unused (not committed). lint OK, build OK. Commit: 981b117
+- T4: La carta: menu regrouped as data (menuGroups + auditOffer in site.ts), CartaBento component, MenuRow deleted (unused). /comanda has no product URL param, so Cotizar links to /comanda plainly. lint OK, build OK. Commit: HASH
 
 ## Next step
-T4.
+T5.

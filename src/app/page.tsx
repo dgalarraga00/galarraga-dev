@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/Button";
-import { MenuRow } from "@/components/MenuRow";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SocialLinks } from "@/components/SocialLinks";
 import { TechMarquee } from "@/components/TechMarquee";
 import { Hero } from "@/components/sections/Hero";
+import { CartaBento } from "@/components/sections/CartaBento";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { ProcessAccordion } from "@/components/sections/ProcessAccordion";
 import { ProjectList } from "@/components/sections/ProjectList";
 import { StackGrid } from "@/components/sections/StackGrid";
-import { menu, profile, sections } from "@/content/site";
+import { profile, sections } from "@/content/site";
 
 const container = "mx-auto w-full max-w-6xl px-6";
 const section = "py-24 sm:py-32";
@@ -37,18 +37,7 @@ export default function Home() {
       <section id="carta" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader {...sections.carta} />
 
-        <div className="mt-14">
-          {menu.map((item) => (
-            <Reveal key={item.name}>
-              <MenuRow
-                name={item.name}
-                price={item.coffee}
-                description={item.description}
-                productId={item.productId}
-              />
-            </Reveal>
-          ))}
-        </div>
+        <CartaBento />
       </section>
 
       {/* ---------------------------------------------------------------- */}
