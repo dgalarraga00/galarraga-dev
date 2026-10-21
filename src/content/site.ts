@@ -216,13 +216,27 @@ export const menu: MenuItem[] = [
 /* 03 · LA BARRA — projects                                                   */
 /* -------------------------------------------------------------------------- */
 
+export type ProjectImage = { src: string; alt: string };
+
 export type Project = {
   slug: string;
   name: string;
+  /** Short label for the viewer's project switcher. */
+  shortName: string;
+  /** Mono line above the name, after "N.º 0X · year". */
+  kind: string;
   /** One line: the problem it solves. */
   tagline: string;
-  /** The context — what the client had before, and what was needed. */
+  /** Two sentences for the card on the home page. */
+  summary: string;
+  /** The context — what the client had before, and what was needed. Shown in the viewer. */
   context: string;
+  /**
+   * Screenshots, both 1440×900 (desktop) and 390×844 (mobile) PNGs in
+   * /public/projects. The intrinsic sizes live in the viewer and the card, so
+   * keep these proportions when swapping an image.
+   */
+  images: { desktop: ProjectImage; mobile: ProjectImage };
   /** Rendered as brand-coloured chips. Slugs must exist in simple-icons. */
   stack: { name: string; slug: string }[];
   liveUrl?: string;
@@ -230,11 +244,32 @@ export type Project = {
   year: string;
 };
 
+/** Copy of the "next project" placeholder at the end of La barra. */
+export const nextProjectSlot = {
+  title: "El próximo puede ser el tuyo.",
+  body: "Cuatro preguntas y te doy un rango orientativo al instante.",
+  cta: "Calcular mi pedido",
+};
+
 export const projects: Project[] = [
   {
     slug: "twonutris",
     name: "TwoNutris",
+    shortName: "TwoNutris",
+    kind: "Web de negocio",
     tagline: "Su menú vivía en un PDF. Ahora vende solo.",
+    summary:
+      "Menú semanal con información nutricional por plato y planes conectados directo a WhatsApp.",
+    images: {
+      desktop: {
+        src: "/projects/twonutris-desktop.png",
+        alt: "Página de inicio de TwoNutris en escritorio",
+      },
+      mobile: {
+        src: "/projects/twonutris-mobile.png",
+        alt: "TwoNutris en celular",
+      },
+    },
     context:
       "Mandaban el menú semanal en un PDF mal armado y sin fotos. Les construí " +
       "una web con el menú de cinco días y varias opciones por jornada, donde " +
@@ -253,7 +288,21 @@ export const projects: Project[] = [
   {
     slug: "kuna",
     name: "KUNA Nutrición",
+    shortName: "KUNA",
+    kind: "Sistema de gestión",
     tagline: "La consulta del nutricionista, sin planillas sueltas.",
+    summary:
+      "Pacientes, medidas en el tiempo y menús personalizados. Los cálculos nutricionales salen solos.",
+    images: {
+      desktop: {
+        src: "/projects/kuna-desktop.png",
+        alt: "Panel de pacientes de KUNA en escritorio",
+      },
+      mobile: {
+        src: "/projects/kuna-mobile.png",
+        alt: "KUNA en celular",
+      },
+    },
     context:
       "Una aplicación de gestión para nutricionistas: alta rápida de " +
       "pacientes, registro de medidas a lo largo del tiempo, armado de menús " +
@@ -445,11 +494,27 @@ export const faqs: Faq[] = [
 /* -------------------------------------------------------------------------- */
 
 export const sections = {
-  origen: { n: "01", kicker: "El origen", title: "Quién está detrás" },
-  carta: { n: "02", kicker: "La carta", title: "En qué puedo ayudarte" },
-  barra: { n: "03", kicker: "La barra", title: "Lo que ya serví" },
-  metodo: { n: "04", kicker: "El método", title: "Cómo trabajo" },
-  molido: { n: "05", kicker: "El molido", title: "Con qué lo preparo" },
-  dudas: { n: "06", kicker: "La sobremesa", title: "Preguntas frecuentes" },
-  comanda: { n: "07", kicker: "La comanda", title: "Arma tu pedido" },
+  barra: {
+    title: "La barra.",
+    tape: "recién servidos, en producción",
+    lead: "Proyectos reales que llegaron a producción. Toca uno para verlo en escritorio y celular.",
+  },
+  carta: {
+    title: "La carta.",
+    tape: "elige tu café",
+    lead: "Cada servicio lleva el nombre del café que se le parece: misma carga, misma intensidad.",
+  },
+  metodo: {
+    title: "Cómo trabajo.",
+    lead: "Sabes en qué punto está tu proyecto en todo momento, y hablas siempre con quien programa.",
+  },
+  origen: {
+    title: "El origen.",
+    tape: "quién está detrás",
+  },
+  molido: {
+    title: "El molido.",
+    tape: "con qué lo preparo",
+    lead: "La selección de origen con la que preparo cada proyecto. Tostado y probado en producción.",
+  },
 } as const;

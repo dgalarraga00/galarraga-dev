@@ -24,6 +24,44 @@ export default function Home() {
       <TechMarquee />
 
       {/* ---------------------------------------------------------------- */}
+      {/* 03 · La barra — projects                                         */}
+      {/* ---------------------------------------------------------------- */}
+      <section id="barra" className={`${container} ${section} scroll-mt-24`}>
+        <SectionHeader {...sections.barra} />
+        <ProjectList />
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* 02 · La carta — services as an actual menu                       */}
+      {/* ---------------------------------------------------------------- */}
+      <section id="carta" className={`${container} ${section} scroll-mt-24`}>
+        <SectionHeader {...sections.carta} />
+
+        <div className="mt-14">
+          {menu.map((item) => (
+            <Reveal key={item.name}>
+              <MenuRow
+                name={item.name}
+                price={item.coffee}
+                description={item.description}
+                productId={item.productId}
+              />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* 04 · Cómo trabajo                                                */}
+      {/* ---------------------------------------------------------------- */}
+      <section id="metodo" className={`${container} ${section} scroll-mt-24`}>
+        <SectionHeader {...sections.metodo} />
+        <div className="mt-12">
+          <ProcessAccordion />
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
       {/* 01 · El origen                                                   */}
       {/* ---------------------------------------------------------------- */}
       <section id="origen" className={`${container} ${section} scroll-mt-24`}>
@@ -85,60 +123,10 @@ export default function Home() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* 02 · La carta — services as an actual menu                       */}
-      {/* ---------------------------------------------------------------- */}
-      <section id="carta" className={`${container} ${section} scroll-mt-24`}>
-        <SectionHeader
-          {...sections.carta}
-          lead="Cada servicio lleva el nombre del café que se le parece. No es un chiste: la carga, la intensidad y el tiempo de preparación son los mismos."
-        />
-
-        <div className="mt-14">
-          {menu.map((item) => (
-            <Reveal key={item.name}>
-              <MenuRow
-                name={item.name}
-                price={item.coffee}
-                description={item.description}
-                productId={item.productId}
-              />
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/* 03 · La barra — projects                                         */}
-      {/* ---------------------------------------------------------------- */}
-      <section id="barra" className={`${container} ${section} scroll-mt-24`}>
-        <SectionHeader
-          {...sections.barra}
-          lead="Proyectos que llegaron a producción, con el contexto que explica cada decisión técnica."
-        />
-        <ProjectList />
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/* 04 · Cómo trabajo                                                */}
-      {/* ---------------------------------------------------------------- */}
-      <section id="metodo" className={`${container} ${section} scroll-mt-24`}>
-        <SectionHeader
-          {...sections.metodo}
-          lead="Cuatro pasos. Sabes en qué punto está tu proyecto en todo momento, y hablas siempre con quien programa."
-        />
-        <div className="mt-12">
-          <ProcessAccordion />
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------------- */}
       {/* 05 · El molido — the stack, in full colour                       */}
       {/* ---------------------------------------------------------------- */}
       <section id="molido" className={`${container} ${section} scroll-mt-24`}>
-        <SectionHeader
-          {...sections.molido}
-          lead="La selección de origen con la que preparo cada proyecto. Tostado y probado en producción."
-        />
+        <SectionHeader {...sections.molido} />
         <StackGrid />
       </section>
 
@@ -147,7 +135,7 @@ export default function Home() {
       {/* ---------------------------------------------------------------- */}
       <section id="dudas" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader
-          {...sections.dudas}
+          title="FAQs."
           lead="Lo que más me preguntan sobre precios, plazos, código y forma de trabajar. Si te queda una duda, escríbeme."
         />
         <div className="mt-12">
@@ -165,8 +153,7 @@ export default function Home() {
       <section id="comanda" className="bg-vino scroll-mt-24">
         <div className={`${container} py-24 text-center sm:py-32`}>
           <SectionHeader
-            {...sections.comanda}
-            align="center"
+            title="Arma tu pedido."
             lead="Cuatro preguntas y te doy un rango orientativo al instante. Sin formularios eternos y sin esperar un email."
           />
 

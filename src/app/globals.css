@@ -30,6 +30,11 @@
   --color-poso: #443830; /* hairlines inside a dark block */
   --color-poso-strong: #4a3d34; /* hover borders inside a dark block */
 
+  /* Project viewer shell: darker than espresso so the dialog reads as a
+     separate window floating over the page. */
+  --color-roast: #1c1612;
+  --color-roast-deep: #0f0b09; /* phone bezel */
+
   --color-crema: #f5efc6; /* primary text on dark   — 14.4:1 */
   --color-leche: #c8bba8; /* secondary text on dark —  8.9:1 */
   --color-vapor: #baa998; /* tertiary text on dark  —  7.4:1 */
