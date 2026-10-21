@@ -7,7 +7,7 @@ import { TechMarquee } from "@/components/TechMarquee";
 import { Hero } from "@/components/sections/Hero";
 import { CartaBento } from "@/components/sections/CartaBento";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
-import { ProcessAccordion } from "@/components/sections/ProcessAccordion";
+import { Preparation } from "@/components/sections/Preparation";
 import { ProjectList } from "@/components/sections/ProjectList";
 import { StackGrid } from "@/components/sections/StackGrid";
 import { profile, sections } from "@/content/site";
@@ -45,9 +45,7 @@ export default function Home() {
       {/* ---------------------------------------------------------------- */}
       <section id="metodo" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader {...sections.metodo} />
-        <div className="mt-12">
-          <ProcessAccordion />
-        </div>
+        <Preparation />
       </section>
 
       {/* ---------------------------------------------------------------- */}

@@ -339,52 +339,71 @@ export const projects: Project[] = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/* 04 · CÓMO TRABAJO — four steps, as a disclosure list                       */
+/* 04 · CÓMO TRABAJO — four steps, "La preparación"                           */
 /* -------------------------------------------------------------------------- */
 
 export type ProcessStep = {
   id: string;
-  /** Maps to an icon in components/icons/ui.tsx */
-  icon: "chat" | "document" | "code" | "rocket";
   title: string;
+  /** Handwritten coffee-making stage shown beside the title. */
+  stage: string;
+  /** Amber pill under the active step. */
+  tag: string;
   body: string;
 };
 
 export const process: ProcessStep[] = [
   {
     id: "consulta",
-    icon: "chat",
     title: "Consulta",
+    stage: "el grano",
+    tag: "sin coste",
     body:
       "Me cuentas tu idea y qué necesitas, sin compromiso y sin coste. " +
       "Lo dejamos por escrito: alcance, plazos realistas y aterrizamos la idea.",
   },
   {
     id: "propuesta",
-    icon: "document",
     title: "Propuesta",
+    stage: "la receta",
+    tag: "precio cerrado",
     body:
       "Te llega un presupuesto detallado por escrito: alcance funcional, " +
       "calendario por fases, entregables concretos y precio cerrado. Sin letra chica, sin costes adicionales ni sorpresas de último minuto.",
   },
   {
     id: "desarrollo",
-    icon: "code",
     title: "Desarrollo",
+    stage: "la extracción",
+    tag: "revisiones cada pocos días",
     body:
       "Construyo por fases con revisiones cada pocos días. Ves cómo " +
       "avanza, no esperas un mes para descubrir si vamos bien. En cada paso importante tienes la decisión.",
   },
   {
     id: "entrega",
-    icon: "rocket",
     title: "Entrega",
+    stage: "servido",
+    tag: "el código es tuyo",
     body:
       "Te entrego el proyecto funcionando y desplegado, con código, accesos " +
       "y documentación. Si quieres seguir conmigo, perfecto. Si prefieres llevarlo " +
       "a otro equipo, también: el código es tuyo.",
   },
 ];
+
+/** Text drawn inside the cup illustration of "La preparación". */
+export const processVisual = {
+  label: "la preparación",
+  cupLabel: "Taza en la etapa:",
+  ticket: {
+    title: "RECETA N.º 0427",
+    lines: ["alcance", "fases", "entregables"],
+    footer: "PRECIO CERRADO",
+  },
+  reviews: ["revisión 1 ✓", "revisión 2 ✓", "revisión 3 ✓"],
+  stamp: ["el código", "es tuyo"],
+};
 
 /* -------------------------------------------------------------------------- */
 /* 05 · EL MOLIDO — stack grid, brand-coloured                                */

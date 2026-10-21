@@ -75,7 +75,7 @@ export function Hero() {
       {/* Espresso band */}
       <Reveal delay={80}>
         <div className="surface-dark bg-espresso text-crema mt-12 flex flex-wrap items-stretch gap-6 rounded-[32px] p-6 sm:p-9">
-          <div className="flex min-w-0 flex-[999_1_26rem] flex-col justify-between gap-8">
+          <div className="flex min-w-0 flex-[2_1_24rem] flex-col justify-between gap-8">
             <p className="max-w-[32.5rem] text-[19px] leading-relaxed text-[#e9dfcf]">
               {profile.lede}
             </p>
@@ -99,7 +99,7 @@ export function Hero() {
               <span aria-hidden="true">&gt; </span>
               {profile.brewLabel}
             </span>
-            <span className="font-display text-[clamp(1.75rem,3.2vw,2.5rem)] leading-none font-semibold">
+            <span className="font-display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-none font-semibold">
               <ScrambleText words={[...profile.brewWords]} />
               <span aria-hidden="true" className="animate-caret">
                 _
