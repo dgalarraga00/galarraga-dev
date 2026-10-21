@@ -47,9 +47,9 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <ButtonLink href="/comanda" className="px-5 text-xs sm:text-sm">
+        <ButtonLink href="/comanda" className="px-4 text-xs whitespace-nowrap sm:px-5 sm:text-sm">
           Arma tu pedido
-          <IconArrowRight className="size-4" />
+          <IconArrowRight className="hidden size-4 sm:block" />
         </ButtonLink>
       </div>
     </header>

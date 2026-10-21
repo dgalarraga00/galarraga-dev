@@ -36,7 +36,7 @@ Strategy: ask-on-risk (default). Work-unit commits on `feat/light-coffee-redesig
 - [x] T3 — La barra: project screenshots in `site.ts`, alternating light/dark cards with browser + phone frames, "El próximo puede ser el tuyo" slot, ProjectViewer dialog (desktop/mobile toggle, project switch). Route: delegated.
 - [x] T4 — La carta: bento of 4 grouped service cards + amber Auditoría exprés strip; "Cotizar" links to /comanda. Route: delegated.
 - [x] T5 — La preparación: scroll-driven sticky cup (beans → ticket → pour + reviews → served + steam + stamp), steps list, reduced-motion static fallback, mobile layout. Route: delegated.
-- [ ] T6 — FAQs Samu-style (huge title, big questions with ↗, accordion), Origen/Molido restyle, closing "Hablemos." CTA band, /comanda readability. Route: delegated.
+- [x] T6 — FAQs Samu-style (huge title, big questions with ↗, accordion), Origen/Molido restyle, closing "Hablemos." CTA band, /comanda readability. Route: delegated.
 
 ## Acceptance criteria
 - Home matches the mockup's structure and look at desktop and phone widths, no horizontal scroll.
@@ -57,7 +57,8 @@ Design decisions:
 - T2: Hero (new sections/Hero.tsx, sticker portrait via next/image preload, amber underline, espresso band with ScrambleText card and code card), TechMarquee restyled, TechIcon falls back to currentColor for near-black brands. lint OK, build OK. Commit: 829f5de
 - T3: La barra: Project data gains images/kind/summary/shortName, alternating cards with browser+phone frames, next-project slot, native <dialog> ProjectViewer; SectionHeader restyled (title+tape+lead); home reordered to final order; sections data reshaped. public/projects/webnose-* are untracked and unused (not committed). lint OK, build OK. Commit: 981b117
 - T4: La carta: menu regrouped as data (menuGroups + auditOffer in site.ts), CartaBento component, MenuRow deleted (unused). /comanda has no product URL param, so Cotizar links to /comanda plainly. lint OK, build OK. Commit: b2a1865
-- T5: La preparación: client Preparation.tsx (scroll-progress sticky stage on md+, IntersectionObserver on mobile, reduced-motion static finished cup, keyframes in globals.css, shared useReducedMotion hook); process data gained stage/tag (existing body copy kept, icon field dropped), processVisual added; ProcessAccordion deleted. Manually verified in browser at 1440px (steps 1 and 3, viewer Esc/focus return). Also tuned Hero band flex so the ScrambleText card does not clip. lint OK, build OK. Commit: HASH
+- T5: La preparación: client Preparation.tsx (scroll-progress sticky stage on md+, IntersectionObserver on mobile, reduced-motion static finished cup, keyframes in globals.css, shared useReducedMotion hook); process data gained stage/tag (existing body copy kept, icon field dropped), processVisual added; ProcessAccordion deleted. Manually verified in browser at 1440px (steps 1 and 3, viewer Esc/focus return). Also tuned Hero band flex so the ScrambleText card does not clip. lint OK, build OK. Commit: 2e47ac9
+- T6: FAQs Samu-style (FaqAccordion rewritten, single-open, button+aria-expanded+region, two questions shortened), Origen text-only, StackGrid light, closing Hablemos band (id=comanda), page.tsx rewritten in final order, Accordion.tsx deleted, opengraph-image on light palette. Checked in browser: no horizontal overflow at 390px on / and /comanda; /comanda readable on dark wrapper; header CTA no longer wraps on mobile. lint OK, build OK. Commit: HASH
 
 ## Next step
-T6.
+Done; awaiting user review / delivery decision (push/PR not done).

@@ -1,156 +1,151 @@
-import Image from "next/image";
-import { ButtonLink } from "@/components/Button";
+import Link from "next/link";
+import { IconArrowDown, IconArrowUpRight } from "@/components/icons/ui";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SocialLinks } from "@/components/SocialLinks";
 import { TechMarquee } from "@/components/TechMarquee";
-import { Hero } from "@/components/sections/Hero";
 import { CartaBento } from "@/components/sections/CartaBento";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { Hero } from "@/components/sections/Hero";
 import { Preparation } from "@/components/sections/Preparation";
 import { ProjectList } from "@/components/sections/ProjectList";
 import { StackGrid } from "@/components/sections/StackGrid";
-import { profile, sections } from "@/content/site";
+import { closing, faqIntro, profile, sections } from "@/content/site";
 
 const container = "mx-auto w-full max-w-6xl px-6";
-const section = "py-24 sm:py-32";
+const section = "pt-32 sm:pt-36";
 
+/** Home order: hero, work, services, method, origin, stack, FAQs, closing CTA. */
 export default function Home() {
   return (
     <>
       <Hero />
 
-      {/* Moving strip of the stack — the first hit of colour on the page. */}
+      {/* Moving strip of the stack, right under the hero. */}
       <TechMarquee />
 
-      {/* ---------------------------------------------------------------- */}
-      {/* 03 · La barra — projects                                         */}
-      {/* ---------------------------------------------------------------- */}
       <section id="barra" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader {...sections.barra} />
         <ProjectList />
       </section>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* 02 · La carta — services as an actual menu                       */}
-      {/* ---------------------------------------------------------------- */}
       <section id="carta" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader {...sections.carta} />
-
         <CartaBento />
       </section>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* 04 · Cómo trabajo                                                */}
-      {/* ---------------------------------------------------------------- */}
       <section id="metodo" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader {...sections.metodo} />
         <Preparation />
       </section>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* 01 · El origen                                                   */}
-      {/* ---------------------------------------------------------------- */}
+      {/* The portrait lives in the hero now, so this is text only. */}
       <section id="origen" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader {...sections.origen} />
-
-        {/* The portrait sits here rather than in the hero: this is where the
-            page is explaining who you are, so a face adds credibility instead
-            of competing with the headline. Collapses to one column when no
-            photo is configured. */}
-        {/* The photo column needs a DEFINITE width. With `auto` the track sizes
-            to its content, the content asks for 100% of the track, and the
-            resolution is circular — the column collapses to zero on desktop
-            while mobile (no grid) renders fine. 20rem also matches the `sizes`
-            hint on the image below. */}
-        <div
-          className={
-            "mt-12 grid gap-12 " +
-            (profile.photo ? "lg:grid-cols-[1fr_20rem] lg:gap-16" : "")
-          }
-        >
-          <div>
-            <div className="max-w-2xl space-y-6">
-              {profile.bio.map((paragraph, i) => (
-                <Reveal key={i} delay={i * 60}>
-                  <p className="text-leche text-base leading-relaxed sm:text-lg">
-                    {paragraph}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-
-            <Reveal delay={120}>
-              <div className="mt-10">
-                <SocialLinks />
-              </div>
+        <div className="mt-12 max-w-3xl space-y-6">
+          {profile.bio.map((paragraph, i) => (
+            <Reveal key={i} delay={i * 60}>
+              <p
+                className={
+                  i === 0
+                    ? "font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-snug"
+                    : "text-ink-2 text-lg leading-relaxed"
+                }
+              >
+                {paragraph}
+              </p>
             </Reveal>
-          </div>
-
-          {profile.photo ? (
-            <Reveal delay={80}>
-              <figure className="lg:sticky lg:top-28">
-                {/* 4:5 frame. The source is taller than that, so object-cover
-                    crops it — `position` from the config decides what survives
-                    the crop, without touching this file. */}
-                <div className="border-poso relative aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl border lg:max-w-none">
-                  <Image
-                    src={profile.photo.src}
-                    alt={profile.photo.alt}
-                    fill
-                    sizes="(min-width: 1024px) 20rem, 100vw"
-                    className="object-cover"
-                    style={{ objectPosition: profile.photo.position ?? "center" }}
-                  />
-                </div>
-              </figure>
-            </Reveal>
-          ) : null}
+          ))}
         </div>
+        <Reveal delay={120}>
+          <div className="mt-10">
+            <SocialLinks />
+          </div>
+        </Reveal>
       </section>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* 05 · El molido — the stack, in full colour                       */}
-      {/* ---------------------------------------------------------------- */}
       <section id="molido" className={`${container} ${section} scroll-mt-24`}>
         <SectionHeader {...sections.molido} />
         <StackGrid />
       </section>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* 06 · Preguntas frecuentes                                        */}
-      {/* ---------------------------------------------------------------- */}
-      <section id="dudas" className={`${container} ${section} scroll-mt-24`}>
-        <SectionHeader
-          title="FAQs."
-          lead="Lo que más me preguntan sobre precios, plazos, código y forma de trabajar. Si te queda una duda, escríbeme."
-        />
-        <div className="mt-12">
+      <section
+        id="dudas"
+        className={`${container} ${section} flex scroll-mt-24 flex-wrap items-start gap-x-16 gap-y-12`}
+      >
+        <Reveal className="flex min-w-0 flex-[1_1_21rem] flex-col gap-6">
+          <span className="font-hand text-ink self-start -rotate-3 bg-white px-3.5 py-0.5 text-[26px] shadow-[0_6px_16px_rgba(36,28,23,0.12)]">
+            {faqIntro.tape}
+          </span>
+          <h2 className="font-display text-[clamp(5rem,10vw,9.25rem)] leading-[0.85] font-bold tracking-[-0.04em]">
+            {faqIntro.title}
+            <span className="text-ambar" aria-hidden="true">
+              .
+            </span>
+          </h2>
+          <p className="text-ink-2 max-w-sm text-lg leading-relaxed">
+            {faqIntro.lead}
+          </p>
+          <Link
+            href="#comanda"
+            className="group mt-4 inline-flex items-center gap-5 self-start"
+          >
+            <span className="font-display text-[clamp(1.6rem,3vw,2.1rem)] font-semibold">
+              {faqIntro.cta}
+            </span>
+            <span className="bg-espresso text-ambar flex h-12 w-16 items-center justify-center rounded-full transition-transform duration-[--dur-control] ease-[--ease-out] group-hover:translate-y-0.5 group-active:scale-[0.96]">
+              <IconArrowDown className="size-5" />
+            </span>
+          </Link>
+        </Reveal>
+
+        <Reveal className="min-w-0 flex-[999_1_35rem]">
           <FaqAccordion />
-        </div>
+        </Reveal>
       </section>
 
-      {/* ---------------------------------------------------------------- */}
-      {/* 07 · La comanda                                                  */}
-      {/* ---------------------------------------------------------------- */}
-      {/* The wine band. It is DARKER than the page, so the closing section
-          drops instead of lifting — the page settles into the call to action
-          rather than flashing at it. Every ink colour gains contrast here
-          (crema 13:1, ámbar 8.25:1), so nothing needs adjusting inside. */}
-      <section id="comanda" className="bg-vino scroll-mt-24">
-        <div className={`${container} py-24 text-center sm:py-32`}>
-          <SectionHeader
-            title="Arma tu pedido."
-            lead="Cuatro preguntas y te doy un rango orientativo al instante. Sin formularios eternos y sin esperar un email."
-          />
+      {/* Closing band: the one full-bleed espresso block. */}
+      <section
+        id="comanda"
+        className="surface-dark bg-espresso text-crema mt-32 scroll-mt-0 sm:mt-36"
+      >
+        <div className={`${container} flex flex-wrap items-end justify-between gap-10 py-24 sm:py-32`}>
+          <Reveal className="min-w-0 flex-[999_1_30rem]">
+            <span className="font-hand bg-ground text-ink inline-block -rotate-2 px-3.5 py-0.5 text-[26px]">
+              {closing.tape}
+            </span>
+            <h2 className="font-display mt-6 text-[clamp(4rem,10vw,9.5rem)] leading-[0.9] font-semibold tracking-[-0.035em]">
+              {closing.title}
+              <span className="text-ambar" aria-hidden="true">
+                .
+              </span>
+            </h2>
+          </Reveal>
 
-          <Reveal delay={120}>
-            <div className="mt-10 flex justify-center">
-              <ButtonLink href="/comanda">Calcular mi pedido</ButtonLink>
-            </div>
-            <p className="text-vapor mt-6 font-mono text-xs">
-              {"// la primera consulta es cortesía de la casa"}
-            </p>
+          <Reveal delay={100} className="flex min-w-0 flex-[1_1_21rem] flex-col gap-3">
+            <Link
+              href="/comanda"
+              className="bg-card text-ink hover:bg-white flex items-center justify-between gap-4 rounded-[20px] px-7 py-6 transition-colors duration-[--dur-hint] ease-[--ease-out]"
+            >
+              <span className="flex flex-col gap-1.5">
+                <span className="text-ink-2 font-mono text-[13px]">
+                  {closing.order.kicker}
+                </span>
+                <span className="font-display text-[28px] font-semibold">
+                  {closing.order.title}
+                </span>
+              </span>
+              <IconArrowUpRight className="size-7 shrink-0" strokeWidth={1.8} />
+            </Link>
+            <a
+              href={`mailto:${profile.email}`}
+              className="border-poso text-crema hover:border-ambar flex flex-col gap-1.5 rounded-[20px] border px-7 py-5 transition-colors duration-[--dur-hint] ease-[--ease-out]"
+            >
+              <span className="text-vapor font-mono text-[13px]">
+                {closing.mail.kicker}
+              </span>
+              <span className="text-lg break-all">{profile.email}</span>
+            </a>
           </Reveal>
         </div>
       </section>

@@ -505,8 +505,7 @@ export const faqs: Faq[] = [
   },
   {
     id: "codigo",
-    question:
-      "Una vez terminado el proyecto, ¿la página es mía o hay mensualidades obligatorias?",
+    question: "¿La página es mía o hay mensualidades obligatorias?",
     answer:
       "Tuya al 100%. Una vez cancelado el proyecto y finalizada la " +
       "producción, te entrego todo: el repositorio, la documentación y los " +
@@ -514,8 +513,7 @@ export const faqs: Faq[] = [
   },
   {
     id: "proceso",
-    question:
-      "¿Cómo nos organizamos en el día a día? ¿Quién será mi único punto de contacto?",
+    question: "¿Quién será mi punto de contacto?",
     answer:
       "Siempre conmigo. Soy tu desarrollador y durante todo el proyecto " +
       "hablas directamente con quien programa, sin intermediarios. El proceso " +
@@ -523,6 +521,22 @@ export const faqs: Faq[] = [
       "fases con revisiones cada pocos días, y entrega con todo documentado.",
   },
 ];
+
+/** Left column of the FAQ section. The title's closing dot is drawn in amber. */
+export const faqIntro = {
+  tape: "la sobremesa",
+  title: "FAQs",
+  lead: "Lo que más me preguntan sobre precios, plazos, código y forma de trabajar. Si te queda una duda, escríbeme.",
+  cta: "Ahora, ¡trabajemos!",
+};
+
+/** The closing band. The title's closing dot is drawn in amber. */
+export const closing = {
+  tape: "¿tienes una idea?",
+  title: "Hablemos",
+  order: { kicker: "la comanda", title: "Arma tu pedido" },
+  mail: { kicker: "o por correo" },
+};
 
 /* -------------------------------------------------------------------------- */
 /* Section headers — the coffee-shop spine of the page                        */

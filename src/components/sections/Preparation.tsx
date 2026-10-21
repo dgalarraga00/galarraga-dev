@@ -232,7 +232,7 @@ export function Preparation() {
             {step === 1 ? (
               <div
                 aria-hidden="true"
-                className="prep-print bg-card text-ink absolute top-2 right-0 w-[9.5rem] rotate-[4deg] rounded-md p-3.5 font-mono text-xs leading-[1.7] shadow-[0_16px_32px_rgba(0,0,0,0.35)] md:w-[11.9rem] md:p-4"
+                className="prep-print bg-card text-ink absolute top-2 right-0 w-[8.5rem] rotate-[4deg] rounded-md p-3.5 font-mono text-xs leading-[1.7] shadow-[0_16px_32px_rgba(0,0,0,0.35)] md:w-[11.9rem] md:p-4"
               >
                 <div className="text-ink-2 text-[11px]">{processVisual.ticket.title}</div>
                 <div className="border-vapor my-2 border-t border-dashed" />
