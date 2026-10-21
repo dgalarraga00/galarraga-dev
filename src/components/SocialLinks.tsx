@@ -42,7 +42,7 @@ export function SocialLinks({ variant = "labelled" }: SocialLinksProps) {
                 : {})}
               aria-label={compact ? social.label : undefined}
               className={
-                "border-poso text-leche hover:border-ambar hover:text-ambar group inline-flex items-center " +
+                "border-line-dashed text-ink-2 hover:border-ink hover:text-ink group inline-flex items-center " +
                 "rounded-full border transition-[color,border-color,transform] " +
                 "duration-[--dur-control] ease-[--ease-out] active:scale-[0.96] " +
                 (compact

@@ -89,6 +89,24 @@ const filled: SVGProps<SVGSVGElement> = {
   "aria-hidden": true,
 };
 
+export function IconArrowRight(props: IconProps) {
+  return (
+    <svg {...stroke} {...props}>
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
+  );
+}
+
+export function IconArrowDown(props: IconProps) {
+  return (
+    <svg {...stroke} {...props}>
+      <path d="M12 5v14" />
+      <path d="m6 13 6 6 6-6" />
+    </svg>
+  );
+}
+
 export function IconGitHub(props: IconProps) {
   return (
     <svg {...filled} {...props}>
