@@ -80,8 +80,6 @@ export const profile = {
   /** Amber block of the hero band: the terminal voice, with a rotating value. */
   brewLabel: "preparando",
   brewWords: [
-    "aplicaciones web",
-    "paneles de gestión",
     "integraciones",
     "e-commerce",
     "APIs a medida",
@@ -334,6 +332,34 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://kuna-seven.vercel.app/",
     repoUrl: "https://github.com/dgalarraga00/Kuna",
+    year: "2026",
+  },
+  {
+    slug: "cafe-nose",
+    name: "Café Nosé",
+    shortName: "Café Nosé",
+    kind: "Web de negocio · concepto",
+    tagline: "Una cafetería que vivía en Instagram, ahora con casa propia.",
+    summary:
+      "Historia, carta, reservas y contacto directo por WhatsApp para una cafetería de especialidad en Quito.",
+    images: {
+      desktop: {
+        src: "/projects/webnose-desktop.png",
+        alt: "Página de inicio de Café Nosé en escritorio",
+      },
+      mobile: {
+        src: "/projects/webnose-mobile.png",
+        alt: "Café Nosé en celular",
+      },
+    },
+    context:
+      "Parte de mi serie «Creando webs para emprendimientos de mi ciudad»: " +
+      "encuentro negocios de Quito que solo existen en Instagram y les armo la " +
+      "web que podrían tener. Para Café Nosé, una cafetería de especialidad, " +
+      "reuní la historia de la casa, la carta, las reservas y el contacto " +
+      "directo por WhatsApp en un solo lugar.",
+    stack: [{ name: "Astro", slug: "astro" }],
+    liveUrl: "https://webnose.galarraga.dev",
     year: "2026",
   },
 ];
