@@ -37,6 +37,7 @@ Strategy: ask-on-risk (default). Work-unit commits on `feat/light-coffee-redesig
 - [x] T4 — La carta: bento of 4 grouped service cards + amber Auditoría exprés strip; "Cotizar" links to /comanda. Route: delegated.
 - [x] T5 — La preparación: scroll-driven sticky cup (beans → ticket → pour + reviews → served + steam + stamp), steps list, reduced-motion static fallback, mobile layout. Route: delegated.
 - [x] T7 — User feedback: hero brew words that overflowed the amber card removed; /comanda framed in an inset dark card (pill no longer merges into a full-bleed dark page); Café Nosé added as N.º 03 (concept from the "webs para emprendimientos de mi ciudad" series, Astro). Route: inline.
+- [x] T8 — Fix ScrambleText crash and recapture cropped phone screenshots. Route: inline.
 - [x] T6 — FAQs Samu-style (huge title, big questions with ↗, accordion), Origen/Molido restyle, closing "Hablemos." CTA band, /comanda readability. Route: delegated.
 
 ## Acceptance criteria
@@ -62,6 +63,8 @@ Design decisions:
 - T6: FAQs Samu-style (FaqAccordion rewritten, single-open, button+aria-expanded+region, two questions shortened), Origen text-only, StackGrid light, closing Hablemos band (id=comanda), page.tsx rewritten in final order, Accordion.tsx deleted, opengraph-image on light palette. Checked in browser: no horizontal overflow at 390px on / and /comanda; /comanda readable on dark wrapper; header CTA no longer wraps on mobile. lint OK, build OK. Commit: 02c91ce
 
 - T7: lint OK, build OK, /comanda checked in headless Chrome at 1440px. Commits: 79dd7b0, a195a07
+
+- T8: ScrambleText crashed after the word list shrank (stale ref index) → index reset per effect run. Phone screenshots were cropped because headless Chrome clamps windows to ~500px; recaptured with Playwright at a true 390×844 viewport, TwoNutris without its cookie banner. lint OK, build OK. Commits: df9e42d, 31f17f4
 
 ## Next step
 Done; awaiting user review / delivery decision (push/PR not done).
