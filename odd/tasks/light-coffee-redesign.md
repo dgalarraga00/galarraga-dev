@@ -67,4 +67,4 @@ Design decisions:
 - T8: ScrambleText crashed after the word list shrank (stale ref index) → index reset per effect run. Phone screenshots were cropped because headless Chrome clamps windows to ~500px; recaptured with Playwright at a true 390×844 viewport, TwoNutris without its cookie banner. lint OK, build OK. Commits: df9e42d, 31f17f4
 
 ## Next step
-Done; awaiting user review / delivery decision (push/PR not done).
+Delivered as a single PR (user choice): https://github.com/dgalarraga00/galarraga-dev/pull/1. Merge is the user's decision.
