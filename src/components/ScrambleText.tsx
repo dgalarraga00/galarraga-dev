@@ -60,6 +60,10 @@ export function ScrambleText({
   useEffect(() => {
     if (reduced || words.length < 2) return;
 
+    // The cycle below always starts from words[0]. Reset the index so a list
+    // that shrank (hot reload, new props) never points past its end.
+    wordIndex.current = 0;
+
     let frame = 0;
     let raf = 0;
     let timeout: ReturnType<typeof setTimeout>;

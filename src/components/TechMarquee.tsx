@@ -2,7 +2,7 @@ import { TechIcon } from "@/components/icons/TechIcon";
 import { marqueeTech } from "@/content/site";
 
 /**
- * Continuous strip of the stack, in brand colour.
+ * Continuous strip of the stack, in brand colour (near-black brands fall back to ink).
  *
  * The track holds the list twice and translates by exactly -50%, so the second
  * copy lands where the first started and the loop is seamless. Because it is a
@@ -19,7 +19,7 @@ export function TechMarquee() {
   return (
     <div
       aria-hidden="true"
-      className="border-poso relative overflow-hidden border-y py-6"
+      className="border-line relative mt-16 overflow-hidden border-y py-6 sm:mt-20"
       style={{
         maskImage:
           "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
@@ -34,7 +34,7 @@ export function TechMarquee() {
             className="flex shrink-0 items-center gap-3"
           >
             <TechIcon slug={tech.slug} className="size-6" />
-            <span className="text-leche font-mono text-xs tracking-[0.15em] whitespace-nowrap uppercase">
+            <span className="text-ink-2 font-mono text-xs tracking-[0.15em] whitespace-nowrap uppercase">
               {tech.name}
             </span>
           </li>

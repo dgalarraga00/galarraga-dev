@@ -12,15 +12,14 @@ export const profile = {
   role: "Desarrollador web",
 
   /**
-   * Portrait, shown in "Quién está detrás" — not in the hero, where it would
-   * compete with the headline for the first three seconds of attention.
+   * Portrait, shown as a sticker beside the headline in the hero.
    *
    * The frame is 4:5. The source here is 1170×2080 (a taller 9:16), so
    * `position` decides which part survives the crop: it maps straight to CSS
    * object-position. Use "center" (default), "top" if the head is being cut,
    * or a pair like "50% 30%" to fine-tune.
    *
-   * Set to `null` to hide it — the section then renders as a single column
+   * Set to `null` to hide it — the hero then renders without the sticker
    * rather than showing a broken image.
    */
   photo: {
@@ -65,11 +64,22 @@ export const profile = {
     "Cada proyecto empieza desde cero: arquitectura, código y puesta en " +
     "producción. Cero plantillas, cero generadores, sin atajos que se pagan después.",
 
-  /** Right column of the hero: the terminal voice, with a rotating value. */
+  /** Washi-tape label above the headline. */
+  heroTape: "Desarrollo web a medida · freelance",
+
+  /** Handwritten sticker stuck to the portrait, and the round badge on it. */
+  heroSticker: "hola, soy David ☕︎",
+  heroBadge: ["recién", "tostado"],
+
+  /** Third block of the hero band. */
+  heroCodeCard: {
+    title: "El código es tuyo",
+    body: "Te entrego proyecto, accesos y documentación. Sin ataduras.",
+  },
+
+  /** Amber block of the hero band: the terminal voice, with a rotating value. */
   brewLabel: "preparando",
   brewWords: [
-    "aplicaciones web",
-    "paneles de gestión",
     "integraciones",
     "e-commerce",
     "APIs a medida",
@@ -123,94 +133,124 @@ export const socials: { key: SocialKey; label: string; href: string }[] = [
 /* 02 · LA CARTA — services, named like a coffee menu                         */
 /* -------------------------------------------------------------------------- */
 
-export type MenuItem = {
-  name: string;
-  coffee: string;
+export type MenuGroup = {
+  id: string;
+  /** Mono line above the title: the coffees this group maps to. */
+  coffees: string;
+  title: string;
   description: string;
-  /**
-   * Links the row to pricing.ts and scope.ts. When present the row can be
-   * expanded to show what the product includes and excludes.
-   *
-   * Omit it for services quoted case by case — those have no fixed scope, and
-   * inventing one would be a promise nobody checked.
-   */
-  productId?: string;
+  /** Dark cards use the espresso palette; the rest sit on the light card. */
+  tone: "light" | "dark";
+  /** Wide cards hold a browser screenshot; narrow ones a small illustration. */
+  size: "wide" | "narrow";
+  /** Screenshot under the text, shown in a browser frame (wide cards). */
+  preview?: { src: string; alt: string; url: string };
+  /** Mini cart illustration (store card). Placeholder labels, not real products. */
+  cart?: { items: { name: string; qty: string }[]; pay: string };
+  /** Short chain of chips (integrations card). */
+  flow?: string[];
 };
 
 /**
- * Ordered by intensity, which happens to be the same order as price: the
- * strength of the coffee is doing real work here, not decoration.
+ * The eight services of the menu, regrouped into four cards. Order here is the
+ * order on the page: wide, narrow, wide, narrow.
+ *
+ * Prices are intentionally absent: the only fixed price on the home is the
+ * express audit below. Everything else is quoted in /comanda.
  */
-export const menu: MenuItem[] = [
+export const menuGroups: MenuGroup[] = [
   {
-    productId: "cortado-express",
-    name: "Auditoría exprés y tres arreglos",
-    coffee: "Cortado Express · $149",
+    id: "webs",
+    coffees: "Cortado · Americano",
+    title: "Webs",
     description:
-      "Reviso tu web actual y arreglo los tres problemas de mayor impacto en 72 horas, con informe de antes y después. Precio cerrado. La forma más barata de probar cómo trabajo.",
+      "Landing pages que convierten y webs corporativas de cinco a ocho páginas.",
+    tone: "light",
+    size: "wide",
+    preview: {
+      src: "/projects/twonutris-desktop.png",
+      alt: "Ejemplo de web: TwoNutris",
+      url: "home.twonutris.net",
+    },
   },
   {
-    productId: "landing",
-    name: "Landing pages",
-    coffee: "Cortado",
-    description:
-      "Una página, directa, pensada para convertir. Poca cantidad, mucho cuerpo y sabor.",
+    id: "tiendas",
+    coffees: "Latte",
+    title: "Tiendas",
+    description: "Catálogo, carrito y pagos a medida. Sin comisiones por venta.",
+    tone: "light",
+    size: "narrow",
+    cart: {
+      items: [
+        { name: "Producto 1", qty: "x2" },
+        { name: "Producto 2", qty: "x1" },
+      ],
+      pay: "Pagar",
+    },
   },
   {
-    productId: "corporativa",
-    name: "Webs corporativas",
-    coffee: "Americano",
+    id: "sistemas",
+    coffees: "Flat white · Doble espresso",
+    title: "Sistemas y apps",
     description:
-      "De cinco a ocho páginas para presentar tu negocio completo. Mismo fondo, servido largo.",
+      "Paneles, CRMs y aplicaciones web completas, de la arquitectura al deploy.",
+    tone: "dark",
+    size: "wide",
+    preview: {
+      src: "/projects/kuna-desktop.png",
+      alt: "Ejemplo de sistema: KUNA",
+      url: "kuna-seven.vercel.app",
+    },
   },
   {
-    productId: "tienda",
-    name: "Tiendas online",
-    coffee: "Latte",
+    id: "integraciones",
+    coffees: "Capuchino · Refill ∞",
+    title: "Integraciones y soporte",
     description:
-      "Catálogo, carrito y pagos, construido a medida. Sin las comisiones por venta ni los límites de las plataformas cerradas.",
-  },
-  {
-    productId: "panel",
-    name: "Paneles y sistemas de gestión",
-    coffee: "Flat white",
-    description:
-      "Dashboards, CRMs y back-offices. Denso, sin espuma, para el uso diario.",
-  },
-  {
-    productId: "app",
-    name: "Aplicaciones web a medida",
-    coffee: "Doble espresso",
-    description:
-      "El producto completo, desde la arquitectura hasta el deploy. Concentrado y sin relleno.",
-  },
-  {
-    // No productId: these two are quoted case by case, so they have no fixed
-    // scope to disclose.
-    name: "Integraciones y automatizaciones",
-    coffee: "Capuchino",
-    description:
-      "Una mezcla espumosa: conectar las herramientas que hoy no se hablan entre sí.",
-  },
-  {
-    name: "Mantenimiento y evolución",
-    coffee: "Refill ∞",
-    description:
-      "El proyecto sigue vivo después del lanzamiento. Yo también, como todo buen café.",
+      "Conecto las herramientas que hoy no se hablan, y el proyecto sigue vivo después del lanzamiento.",
+    tone: "light",
+    size: "narrow",
+    flow: ["WhatsApp", "Tu sistema", "Email"],
   },
 ];
+
+/** The entry offer. Its price is the only one shown on the home page. */
+export const auditOffer = {
+  kicker: "Cortado Express · precio cerrado",
+  title: "Auditoría exprés y tres arreglos",
+  description:
+    "Reviso tu web actual y arreglo los tres problemas de mayor impacto en 72 horas, con informe de antes y después. La forma más barata de probar cómo trabajo.",
+  price: "$149",
+  cta: "Pedir auditoría",
+  /** Label of the "Cotizar" buttons. */
+  quoteCta: "Cotizar",
+};
 
 /* -------------------------------------------------------------------------- */
 /* 03 · LA BARRA — projects                                                   */
 /* -------------------------------------------------------------------------- */
 
+export type ProjectImage = { src: string; alt: string };
+
 export type Project = {
   slug: string;
   name: string;
+  /** Short label for the viewer's project switcher. */
+  shortName: string;
+  /** Mono line above the name, after "N.º 0X · year". */
+  kind: string;
   /** One line: the problem it solves. */
   tagline: string;
-  /** The context — what the client had before, and what was needed. */
+  /** Two sentences for the card on the home page. */
+  summary: string;
+  /** The context — what the client had before, and what was needed. Shown in the viewer. */
   context: string;
+  /**
+   * Screenshots, both 1440×900 (desktop) and 390×844 (mobile) PNGs in
+   * /public/projects. The intrinsic sizes live in the viewer and the card, so
+   * keep these proportions when swapping an image.
+   */
+  images: { desktop: ProjectImage; mobile: ProjectImage };
   /** Rendered as brand-coloured chips. Slugs must exist in simple-icons. */
   stack: { name: string; slug: string }[];
   liveUrl?: string;
@@ -218,11 +258,32 @@ export type Project = {
   year: string;
 };
 
+/** Copy of the "next project" placeholder at the end of La barra. */
+export const nextProjectSlot = {
+  title: "El próximo puede ser el tuyo.",
+  body: "Cuatro preguntas y te doy un rango orientativo al instante.",
+  cta: "Calcular mi pedido",
+};
+
 export const projects: Project[] = [
   {
     slug: "twonutris",
     name: "TwoNutris",
+    shortName: "TwoNutris",
+    kind: "Web de negocio",
     tagline: "Su menú vivía en un PDF. Ahora vende solo.",
+    summary:
+      "Menú semanal con información nutricional por plato y planes conectados directo a WhatsApp.",
+    images: {
+      desktop: {
+        src: "/projects/twonutris-desktop.png",
+        alt: "Página de inicio de TwoNutris en escritorio",
+      },
+      mobile: {
+        src: "/projects/twonutris-mobile.png",
+        alt: "TwoNutris en celular",
+      },
+    },
     context:
       "Mandaban el menú semanal en un PDF mal armado y sin fotos. Les construí " +
       "una web con el menú de cinco días y varias opciones por jornada, donde " +
@@ -241,7 +302,21 @@ export const projects: Project[] = [
   {
     slug: "kuna",
     name: "KUNA Nutrición",
+    shortName: "KUNA",
+    kind: "Sistema de gestión",
     tagline: "La consulta del nutricionista, sin planillas sueltas.",
+    summary:
+      "Pacientes, medidas en el tiempo y menús personalizados. Los cálculos nutricionales salen solos.",
+    images: {
+      desktop: {
+        src: "/projects/kuna-desktop.png",
+        alt: "Panel de pacientes de KUNA en escritorio",
+      },
+      mobile: {
+        src: "/projects/kuna-mobile.png",
+        alt: "KUNA en celular",
+      },
+    },
     context:
       "Una aplicación de gestión para nutricionistas: alta rápida de " +
       "pacientes, registro de medidas a lo largo del tiempo, armado de menús " +
@@ -259,55 +334,102 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/dgalarraga00/Kuna",
     year: "2026",
   },
+  {
+    slug: "cafe-nose",
+    name: "Café Nosé",
+    shortName: "Café Nosé",
+    kind: "Web de negocio · concepto",
+    tagline: "Una cafetería que vivía en Instagram, ahora con casa propia.",
+    summary:
+      "Historia, carta, reservas y contacto directo por WhatsApp para una cafetería de especialidad en Quito.",
+    images: {
+      desktop: {
+        src: "/projects/webnose-desktop.png",
+        alt: "Página de inicio de Café Nosé en escritorio",
+      },
+      mobile: {
+        src: "/projects/webnose-mobile.png",
+        alt: "Café Nosé en celular",
+      },
+    },
+    context:
+      "Parte de mi serie «Creando webs para emprendimientos de mi ciudad»: " +
+      "encuentro negocios de Quito que solo existen en Instagram y les armo la " +
+      "web que podrían tener. Para Café Nosé, una cafetería de especialidad, " +
+      "reuní la historia de la casa, la carta, las reservas y el contacto " +
+      "directo por WhatsApp en un solo lugar.",
+    stack: [{ name: "Astro", slug: "astro" }],
+    liveUrl: "https://webnose.galarraga.dev",
+    year: "2026",
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
-/* 04 · CÓMO TRABAJO — four steps, as a disclosure list                       */
+/* 04 · CÓMO TRABAJO — four steps, "La preparación"                           */
 /* -------------------------------------------------------------------------- */
 
 export type ProcessStep = {
   id: string;
-  /** Maps to an icon in components/icons/ui.tsx */
-  icon: "chat" | "document" | "code" | "rocket";
   title: string;
+  /** Handwritten coffee-making stage shown beside the title. */
+  stage: string;
+  /** Amber pill under the active step. */
+  tag: string;
   body: string;
 };
 
 export const process: ProcessStep[] = [
   {
     id: "consulta",
-    icon: "chat",
     title: "Consulta",
+    stage: "el grano",
+    tag: "sin coste",
     body:
       "Me cuentas tu idea y qué necesitas, sin compromiso y sin coste. " +
       "Lo dejamos por escrito: alcance, plazos realistas y aterrizamos la idea.",
   },
   {
     id: "propuesta",
-    icon: "document",
     title: "Propuesta",
+    stage: "la receta",
+    tag: "precio cerrado",
     body:
       "Te llega un presupuesto detallado por escrito: alcance funcional, " +
       "calendario por fases, entregables concretos y precio cerrado. Sin letra chica, sin costes adicionales ni sorpresas de último minuto.",
   },
   {
     id: "desarrollo",
-    icon: "code",
     title: "Desarrollo",
+    stage: "la extracción",
+    tag: "revisiones cada pocos días",
     body:
       "Construyo por fases con revisiones cada pocos días. Ves cómo " +
       "avanza, no esperas un mes para descubrir si vamos bien. En cada paso importante tienes la decisión.",
   },
   {
     id: "entrega",
-    icon: "rocket",
     title: "Entrega",
+    stage: "servido",
+    tag: "el código es tuyo",
     body:
       "Te entrego el proyecto funcionando y desplegado, con código, accesos " +
       "y documentación. Si quieres seguir conmigo, perfecto. Si prefieres llevarlo " +
       "a otro equipo, también: el código es tuyo.",
   },
 ];
+
+/** Text drawn inside the cup illustration of "La preparación". */
+export const processVisual = {
+  label: "la preparación",
+  cupLabel: "Taza en la etapa:",
+  ticket: {
+    title: "RECETA N.º 0427",
+    lines: ["alcance", "fases", "entregables"],
+    footer: "PRECIO CERRADO",
+  },
+  reviews: ["revisión 1 ✓", "revisión 2 ✓", "revisión 3 ✓"],
+  stamp: ["el código", "es tuyo"],
+};
 
 /* -------------------------------------------------------------------------- */
 /* 05 · EL MOLIDO — stack grid, brand-coloured                                */
@@ -409,8 +531,7 @@ export const faqs: Faq[] = [
   },
   {
     id: "codigo",
-    question:
-      "Una vez terminado el proyecto, ¿la página es mía o hay mensualidades obligatorias?",
+    question: "¿La página es mía o hay mensualidades obligatorias?",
     answer:
       "Tuya al 100%. Una vez cancelado el proyecto y finalizada la " +
       "producción, te entrego todo: el repositorio, la documentación y los " +
@@ -418,8 +539,7 @@ export const faqs: Faq[] = [
   },
   {
     id: "proceso",
-    question:
-      "¿Cómo nos organizamos en el día a día? ¿Quién será mi único punto de contacto?",
+    question: "¿Quién será mi punto de contacto?",
     answer:
       "Siempre conmigo. Soy tu desarrollador y durante todo el proyecto " +
       "hablas directamente con quien programa, sin intermediarios. El proceso " +
@@ -428,16 +548,48 @@ export const faqs: Faq[] = [
   },
 ];
 
+/** Left column of the FAQ section. The title's closing dot is drawn in amber. */
+export const faqIntro = {
+  tape: "la sobremesa",
+  title: "FAQs",
+  lead: "Lo que más me preguntan sobre precios, plazos, código y forma de trabajar. Si te queda una duda, escríbeme.",
+  cta: "Ahora, ¡trabajemos!",
+};
+
+/** The closing band. The title's closing dot is drawn in amber. */
+export const closing = {
+  tape: "¿tienes una idea?",
+  title: "Hablemos",
+  order: { kicker: "la comanda", title: "Arma tu pedido" },
+  mail: { kicker: "o por correo" },
+};
+
 /* -------------------------------------------------------------------------- */
 /* Section headers — the coffee-shop spine of the page                        */
 /* -------------------------------------------------------------------------- */
 
 export const sections = {
-  origen: { n: "01", kicker: "El origen", title: "Quién está detrás" },
-  carta: { n: "02", kicker: "La carta", title: "En qué puedo ayudarte" },
-  barra: { n: "03", kicker: "La barra", title: "Lo que ya serví" },
-  metodo: { n: "04", kicker: "El método", title: "Cómo trabajo" },
-  molido: { n: "05", kicker: "El molido", title: "Con qué lo preparo" },
-  dudas: { n: "06", kicker: "La sobremesa", title: "Preguntas frecuentes" },
-  comanda: { n: "07", kicker: "La comanda", title: "Arma tu pedido" },
+  barra: {
+    title: "La barra.",
+    tape: "recién servidos, en producción",
+    lead: "Proyectos reales que llegaron a producción. Toca uno para verlo en escritorio y celular.",
+  },
+  carta: {
+    title: "La carta.",
+    tape: "elige tu café",
+    lead: "Cada servicio lleva el nombre del café que se le parece: misma carga, misma intensidad.",
+  },
+  metodo: {
+    title: "Cómo trabajo.",
+    lead: "Sabes en qué punto está tu proyecto en todo momento, y hablas siempre con quien programa.",
+  },
+  origen: {
+    title: "El origen.",
+    tape: "quién está detrás",
+  },
+  molido: {
+    title: "El molido.",
+    tape: "con qué lo preparo",
+    lead: "La selección de origen con la que preparo cada proyecto. Tostado y probado en producción.",
+  },
 } as const;

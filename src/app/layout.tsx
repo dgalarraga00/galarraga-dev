@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Mono, Fraunces, Instrument_Sans } from "next/font/google";
+import { Caveat, DM_Mono, Fraunces, Instrument_Sans } from "next/font/google";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -37,6 +37,14 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
+/** Handwritten tape labels ("recién tostado", "elige tu café"). One weight. */
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: `${profile.name} — ${profile.role}`,
   description: profile.subheadline,
@@ -46,9 +54,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${fraunces.variable} ${instrument.variable} ${dmMono.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${instrument.variable} ${dmMono.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="bg-espresso text-crema flex min-h-full flex-col">
+      <body className="bg-ground text-ink flex min-h-full flex-col">
         <SmoothScroll />
         <SiteHeader />
         <main className="flex-1">{children}</main>

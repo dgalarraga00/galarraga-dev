@@ -17,10 +17,13 @@ export const alt = `${profile.name} — ${profile.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const ESPRESSO = "#241C17";
-const CREMA = "#F5EFC6";
+// Light palette, matching the site: milk-coffee ground, espresso ink, and an
+// amber underline bar in place of the old amber word (amber text on a light
+// ground fails contrast).
+const GROUND = "#F5EEE3";
+const INK = "#241C17";
+const INK_2 = "#5E4C40";
 const AMBAR = "#E0A458";
-const LECHE = "#C8BBA8";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -32,11 +35,11 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: ESPRESSO,
+          backgroundColor: GROUND,
           padding: "72px 80px",
         }}
       >
-        <div style={{ display: "flex", color: LECHE, fontSize: 28 }}>
+        <div style={{ display: "flex", color: INK_2, fontSize: 28 }}>
           {profile.wordmark}
         </div>
 
@@ -48,7 +51,7 @@ export default function OpengraphImage() {
               fontWeight: 700,
               lineHeight: 1,
               letterSpacing: "-0.03em",
-              color: CREMA,
+              color: INK,
             }}
           >
             {profile.headline}
@@ -57,12 +60,14 @@ export default function OpengraphImage() {
             style={{
               display: "flex",
               alignItems: "center",
+              alignSelf: "flex-start",
+              borderBottom: `14px solid ${AMBAR}`,
               gap: 24,
               fontSize: 132,
               fontWeight: 700,
               lineHeight: 1,
               letterSpacing: "-0.03em",
-              color: AMBAR,
+              color: INK,
             }}
           >
             {profile.headlineAccent}
@@ -70,7 +75,7 @@ export default function OpengraphImage() {
                 external files, so the cup travels with the markup. */}
             <svg width="96" height="96" viewBox="0 0 24 24" fill="none">
               <g
-                stroke={AMBAR}
+                stroke={INK}
                 strokeWidth={1.6}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -89,7 +94,7 @@ export default function OpengraphImage() {
               display: "flex",
               marginTop: 36,
               fontSize: 36,
-              color: LECHE,
+              color: INK_2,
             }}
           >
             {profile.headlineDeck}
@@ -101,7 +106,7 @@ export default function OpengraphImage() {
             display: "flex",
             justifyContent: "space-between",
             fontSize: 26,
-            color: LECHE,
+            color: INK_2,
           }}
         >
           <div style={{ display: "flex" }}>{profile.name}</div>
